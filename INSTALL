@@ -1,0 +1,36 @@
+How to install project
+======================
+
+1. Install Node.JS::
+
+    sudo aptitde install checkinstall ruby rubygems
+    cd /tmp
+    git clone git://github.com/ry/node.git
+    cd node
+    ./configure --prefix=/opt/node
+    make
+    sudo checkinstall -D
+    sudo dpkg -i node*.deb
+    echo -e "export PATH=/opt/node/bin:/var/lib/gems/1.8/bin:\${PATH}" | sudo tee /etc/profile.d/nodejs.sh
+    source /etc/profile.d/nodejs.sh
+    cd ~
+    rm /tmp/node -rf
+    
+2. Install NPM::
+
+    git clone http://github.com/isaacs/npm.git
+    cd npm
+    git submodule update --init
+    sudo PATH=/opt/node/bin:${PATH} make install
+
+3. Install coffee-script::
+
+    sudo PATH=/opt/node/bin:${PATH} /opt/node/bin/npm install coffee-script
+
+4. Install SCSS::
+
+    sudo gem install haml compass --no-ri --no-rdoc
+    
+5. Install other requirements::
+
+    pip install -r ./REQUIREMENTS 

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="en-us"/>
+    {% load assets %}
+    {% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    {% assets "css_all" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css"/>
+    {% endassets %}
+</head>
+
+
+<body class="bp">
+
+<div class="container">
+
+    <div id="header">
+
+        <div class="logo">
+            <h1>
+                <a href="/">mydomedia test app</a>
+            </h1>
+        </div>
+
+        <div class="registration">
+            {% if user.is_anonymous %}
+                <p><a href="{% url login %}">Login</a></p>
+            {% else %}
+                <span class="user">
+                    {{ user.username }}
+                    <a class="logout" href="{% url logout %}">Logout</a>
+                </span>
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    <div id="content">
+        {% block content %}
+            <h2>Page title</h2>
+            <p>
+                Sample content
+            </p>
+        {% endblock %}
+    </div>
+
+    <div id="footer">
+        {% block footer %}
+        Dmitri Patrakov, 2011
+        {% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>
